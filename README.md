@@ -11,7 +11,7 @@ links sondas:  http://weather.uwyo.edu/upperair/sounding.html
 
 links ideam: 
 
-links sinfac:  http://dhime.ideam.gov.co/atencionciudadano/
+links SIMFAC:  http://dhime.ideam.gov.co/atencionciudadano/
 
 
 
