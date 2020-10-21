@@ -22,10 +22,10 @@ if(i~=3)
     
     
 subplot(2,5,i)
-    plot(eval(variable{i}),eval(variable{3}))
+    plot(eval(variable{i}),eval(variable{5}))
 hold on
 grid on
-ylabel({'Altitude',unit{3}});
+ylabel({'Pressure',unit{5}});
 xlabel(unit{i});
     title({name{i},''});
 
@@ -33,15 +33,27 @@ xlabel(unit{i});
      if(i>3)
         
 subplot(2,5,i-1)
-    plot(eval(variable{i}),eval(variable{3}))
+    plot(eval(variable{i}),eval(variable{5}))
 hold on
 grid on
-ylabel({'Altitude',unit{3}});
+ylabel({'Pressure',unit{5}});
     xlabel(unit{i});
   title({name{i},''});
     end
 end
 sgtitle('Hernesto cortizos 7 pm 18 august 2020')
 end
+
+
+% part to get U and V from wind direction and wind speed
+
+% wind direction variable 1
+% wind speed variable 7
+
+
+
+variable{7}*cos(variable{i})
+
+
 
 
