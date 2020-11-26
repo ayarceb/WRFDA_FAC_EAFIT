@@ -10,6 +10,15 @@ Metar_cube_P=nan(531,660,41,73);%Pressure Metar Hipercube
 
 
 
+
+
+lati=[10.46314,3.42158,11.233,11.533,8.75,6.217,10.4,4.60971,7.0652800,10.96854];
+longi=[-73.25322,-76.5205,-74.2,-72.9,-75.883,-75.567,-75.5,-74.08175,-73.8547200,-74.78132];
+datos={'datos_valledupar.csv','datos_cali.csv','datos_SANTA_MARTA.csv','datos_rioacha.csv','datos_monteria.csv',...
+    'datos_Medellin.csv','datos_cartagena.csv','datos_Bogota.csv','datos_barrancabermeja.csv','datos_Barranquilla.csv'};
+nombres_ciudades={'Valledupar','Cali','Santa Marta','Riohacha','Monteria','Medellin','Cartagena','Bogotá','Barrancabermeja'...
+    'Barranquilla'};
+
 % Dimensiones Dom_1    299 x 325   (nx ny)
 % Dimensiones Dom_2    531 X 660   (nx,ny)
 
