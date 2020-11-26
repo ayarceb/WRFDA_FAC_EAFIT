@@ -248,82 +248,8 @@ nx=zeros(length(lati),1);ny=zeros(length(longi),1);
 fig=figure;
 for ind =1:10
 
-% Dimensiones Dom_1    299 x 325   (nx ny)
-% Dimensiones Dom_2    531 X 660   (nx,ny)
 
-% Valledupar Dom_1    10.46314, -73.25322     
-% Valledupar Dom_2    10.46314, -73.25322      
-
-% Cali Dom_1	3.42158, -76.5205  nx , ny
-% Cali Dom_2	3.42158, -76.5205
-
-% Santa Marta Dom_1  	Latitud: 11.233, Longitud: -74.2
-% Santa Marta Dom_2  	Latitud: 11.233, Longitud: -74.2
-
-% San Andrés Dom_1  	Latitud: 6.817, Longitud: -72.85
-% San Andrés Dom_2  	Latitud: 6.817, Longitud: -72.85
- 
-% Riohacha Dom_1	Latitud: 11.533, Longitud: -72.9
-% Riohacha Dom_2	Latitud: 11.533, Longitud: -72.9
-
-% Providencia Dom_1 Latitud: 3.088, Longitud: -73.25
-% Providencia Dom_2 Latitud: 3.088, Longitud: -73.25
-
-% Montería Dom_1	Latitud: 8.75, Longitud: -75.883
-% Montería Dom_2	Latitud: 8.75, Longitud: -75.883
-
-% Medellín Dom_1	Latitud: 6.217, Longitud: -75.567
-% Medellín Dom_2	Latitud: 6.217, Longitud: -75.567
-
-% Cartagena de Indias Dom_1	Latitud: 10.4, Longitud: -75.5
-% Cartagena de Indias Dom_2	Latitud: 10.4, Longitud: -75.5
-
-% Bogotá Dom_1 Latitud: 4.60971, Longitud: -74.08175
-% Bogotá Dom_2 Latitud: 4.60971, Longitud: -74.08175
-
-% Barrancabermeja: Dom_1  Latitud: 7.0652800, Longitud: -73.8547200
-% Barrancabermeja: Dom_2  Latitud: 7.0652800, Longitud: -73.8547200
-
-% Barranquilla Dom_1  Latitud:10.96854, Longitud: -74.78132
-% Barranquilla Dom_2  Latitud:10.96854, Longitud: -74.78132
-
-  if dom==1
-nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.041,XLONG(:,1)<longi(ind)+0.041 ));
-ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.041,XLAT(1,:)<lati(ind)+0.041 ));      
-    end
-  if dom==2
-nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.014,XLONG(:,1)<longi(ind)+0.014 ));
-ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.014,XLAT(1,:)<lati(ind)+0.014 ));
-    end
-
-
-
-%%  Time series plot part
-
-mydir='/run/media/dirac/Datos/Reciente_Dropbox/users/arjo/lotos-euros/Repositorio_Personal_Slopez/Personal/Metar/datos';
-cd(mydir)
-
-
-subplot(2,5,ind)
-%datetime.setDefaultFormats('default','yyyy-MM-dd hh:mm:ss')
-%t1 = datetime(2020,08,17,19,0,0); t2 = datetime(2020,8,20,19,0,0);  % UTC-5
-t1 = datetime(2020,08,18,00,0,0); t2 = datetime(2020,8,21,0,0,0);  % UTC
-tt = t1:hours(1):t2;
-tt=tt';
-
-T=readtable(datos{ind});
-
-if id==2
-NA=plot(tt,squeeze(T2(nx(ind,1),ny(ind,1),:))-273.5);
-hold on
-A=plot(tt,squeeze(T2_assim(nx(ind,1),ny(ind,1),:))-273.5);
-title(variables{2})
-hold on
-plot(T.D,T.T,'o', 'MarkerFaceColor', 'b','MarkerSize', 4)
-legend("No asimilado","Asimilado","Temperatura METAR")
-if ind==6
-    hold on
-    mydir='/run/media/dirac/Datos/Reciente_Dropbox/users/arjo/lotos-euros/Repositorio_Personal_Slopez/Personal/Metar/Segunda_Fecha/SIATA/Temperature';
+    x/users/arjo/lotos-euros/Repositorio_Personal_Slopez/Personal/Metar/Segunda_Fecha/SIATA/Temperature';
     cd(mydir)
     
     TT=readtable('estacion_data_temperatura_1019__20200801_20200831.csv');
