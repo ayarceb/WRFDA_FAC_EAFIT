@@ -8,7 +8,9 @@ clc;close;clear all
 %carpeta donde estan los resultados de modelo asimilado y no asimilado
 
 mydir1='/disk/kalman/WRFDA_semanas/1_Septiembre/Asimilando';
-
+cd(mydir1)
+XLONG=ncread('20200901-00asimilando_d2.nc','XLONG');
+XLAT=ncread('20200901-00asimilando_d2.nc','XLAT');
 
 %Creación de la matriz del cubo para T y para P
 
@@ -34,6 +36,8 @@ datos={'datos_valledupar.csv','datos_cali.csv','datos_SANTA_MARTA.csv','datos_ri
 nombres_ciudades={'Valledupar','Cali','Santa Marta','Riohacha','Monteria','Medellin','Cartagena','Bogotá','Barrancabermeja'...
     'Barranquilla'};
 
+for i=13:20
+ind=1;
 
 % Valledupar Dom_1    10.46314, -73.25322     
 % Valledupar Dom_2    10.46314, -73.25322      
@@ -71,15 +75,19 @@ nombres_ciudades={'Valledupar','Cali','Santa Marta','Riohacha','Monteria','Medel
 % Barranquilla Dom_1  Latitud:10.96854, Longitud: -74.78132
 % Barranquilla Dom_2  Latitud:10.96854, Longitud: -74.78132
 
-  if dom==1
-nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.041,XLONG(:,1)<longi(ind)+0.041 ));
-ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.041,XLAT(1,:)<lati(ind)+0.041 ));      
-    end
-  if dom==2
+
+%   if dom==1
+% nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.041,XLONG(:,1)<longi(ind)+0.041 ));
+% ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.041,XLAT(1,:)<lati(ind)+0.041 ));      
+%     end
+
 nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.014,XLONG(:,1)<longi(ind)+0.014 ));
 ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.014,XLAT(1,:)<lati(ind)+0.014 ));
-    end
 
+
+
+
+  T=readtable(datos{ind});
 
 
 %%  Time series plot part
@@ -92,3 +100,6 @@ ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.014,XLAT(1,:)<lati(ind)+0.014 ));
 %ciudad Bogota  px=,py=
 
 
+Metar_cube_T(nx(ind,1),ny(ind,1),1,1)=T.T(i-12);
+Metar_cube_P(nx(ind,1),ny(ind,1),1,1)=T.P(i-12);
+end
