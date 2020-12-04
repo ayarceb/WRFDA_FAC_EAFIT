@@ -2,7 +2,7 @@
 % Dimensiones Dom_1    299 x 325   (nx ny)
 % Dimensiones Dom_2    531 X 660   (nx,ny)
 
-clc;close;clear all
+% clc;close;clear all
 
 
 %carpeta donde estan los resultados de modelo asimilado y no asimilado
@@ -100,6 +100,10 @@ ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.014,XLAT(1,:)<lati(ind)+0.014 ));
 %ciudad Bogota  px=,py=
 
 
-Metar_cube_T(nx(ind,1),ny(ind,1),1,1)=T.T(i-12);
-Metar_cube_P(nx(ind,1),ny(ind,1),1,1)=T.P(i-12);
+T=T.T;
+P=T.P;
+
+
+Metar_cube_T(nx(ind,1),ny(ind,1),1,1)=T(i);
+Metar_cube_P(nx(ind,1),ny(ind,1),1,1)=P(i);
 end
