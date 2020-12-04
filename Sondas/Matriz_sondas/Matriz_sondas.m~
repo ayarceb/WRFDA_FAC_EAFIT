@@ -1,0 +1,62 @@
+% code to create matrix sounding data
+
+clc;close all; clear all
+
+
+% load sounding data
+
+
+variable={'PRES','HGHT','TEMP','DWPT','RELH','MIXR','DRCT','SKNT','THTA','THTE','THTV'};
+
+name={'Atmospheric Pressure ','Geopotential Height','Temperature','Dewpoint Temperature','Relative Humidity','Mixing Ratio',...
+    'Wind Direction','Wind Speed','Potential Temperature','Equivalent Potential Temperature','Virtual Potential Temperature'};
+
+unit={'[hPa]','[meter]','[celsius]','[celsius]','[%]','[gram/kilogram]','[degrees true]','[knot]','[kelvin]','[kelvin]','[kelvin]'};
+
+%day 1
+mydir='/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Sondas/Descarga_Sondas/new_download/raw/1_sept';
+cd(mydir)
+
+
+Curazao=readtable('78988.txt');
+Barranquilla=readtable('80028.txt');
+Palonegro=readtable('80094.txt');
+Bogota=readtable('80222.txt');
+
+Curazao1=Curazao{:,:};
+Barranquilla1=Barranquilla{:,:};
+Palonegro1=Palonegro{:,:};
+Bogota1=Bogota{:,:};
+
+
+
+wind_dir_Bog=Bogota1(:,7);
+wind_speed_Bog=Bogota1(:,8);
+
+delta_t=1;
+
+xx(1)=0;
+yy(1)=0;
+for i=1:98
+
+vx(i)=wind_speed_Bog(i,1)*cos(wind_dir_Bog(i,1)*pi/180)*delta_t   
+vy(i)=wind_speed_Bog(i,1)*sin(wind_dir_Bog(i,1)*pi/180)*delta_t   
+
+
+% x(i)=sqrt((()^2)+(wind_speed_Bog(i,1)*sin(wind_dir_Bog(i,1)*pi/180)*delta_t)^2);
+% 
+% xx(i)=x(i)*sin(wind_dir_Bog(i,1)*pi/180)+xx(i-1);
+% yy(i)=x(i)*cos(wind_dir_Bog(i,1)*pi/180)+yy(i-1);
+
+if(i==1)
+plot([0 vx(i)],[0 vy(i)])
+hold on
+end
+if(i>1)
+plot([vx(i-1) v(i)],[vy(i-1) vy(i)])
+hold on
+
+xlim([-50,50])
+ylim([-50,50])
+end
+end
