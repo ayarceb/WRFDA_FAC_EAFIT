@@ -1,10 +1,10 @@
 
 import sys, os
-import  wget
+import wget
 import re
 from datetime import datetime
-date = datetime(2018,8,18,
-path='/home/dirac/Dropbox/2020/Proyecto Elena'
+date = datetime(2020,9,1,12)
+path='/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Sondas/Descarga_Sondas/new_download_2'
 
 def download_sounds(date, path):
     """
@@ -15,14 +15,11 @@ def download_sounds(date, path):
     if not os.path.isdir(f'{path}/raw/sound'):
         os.makedirs(f'{path}/raw/sound')
     os.chdir(f'{path}/raw/sound')
-    # 80001-San Andres,80222-Bogota,80371-tres esquinas,80398 - leticia
-    #sound_omm_ids = [76644,78384,78397,78526,78583,78762,78807,78866,78954,78970,
-    #            78988,80001,80035,80222,80371,80398,81729,82107,82332,82411,
-    #            82532,82705,82824,82917,84008,84203,84628]
-    sound_omm_ids = [80001,80222,80371,80398]
-    download_sounds(date, path)_url = "http://weather.uwyo.edu/cgi-bin/sounding?region=naconf&TYPE=TEXT%3ALIST"
+
+    sound_omm_ids = [78988,78807,80028,80094,80222,80259]
+    d_url = "http://weather.uwyo.edu/cgi-bin/sounding?region=naconf&TYPE=TEXT%3ALIST"   
     d_url += "&YEAR="+date_str[:4]
-    _url += "&MONTH=" +date_str[4:6]
+    d_url += "&MONTH=" +date_str[4:6]
     d_url += "&FROM=" + date_str[-4:]
     d_url += "&TO=" + date_str[-4:]
     d_url += "&STNM="
@@ -50,5 +47,3 @@ def strip_tags(value):
     return re.sub(r'<[^>]*?>', '', value)
 
 download_sounds(date, path)
-
-
