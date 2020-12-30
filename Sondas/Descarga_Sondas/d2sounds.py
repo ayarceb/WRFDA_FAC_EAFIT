@@ -3,8 +3,8 @@ import sys, os
 import wget
 import re
 from datetime import datetime
-date = datetime(2020,9,1,12)
-path='/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Sondas/Descarga_Sondas/new_download_2'
+date = datetime(2020,8,20,12)
+path='/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Sondas/Descarga_Sondas/Agos'
 
 def download_sounds(date, path):
     """
