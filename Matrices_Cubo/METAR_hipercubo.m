@@ -1,7 +1,7 @@
 % create metar hipercube solicitado
-% Dimensiones Dom_1    299 x 325   (nx ny)
 % Dimensiones Dom_2    531 X 660   (nx,ny)
-
+% Simulation between August-18-2020_00:00:00 to
+% August-21-2020_00:00:00 WRF time.
 clc;close;clear all
 
 
@@ -17,13 +17,27 @@ clc;close;clear all
 %mydir='/home/kalman/Andres/FAC_REPO/WRFDA_FAC_EAFIT/Metar/datos';
 %cd(mydir)
 
-% Jhon
-XLONG=ncread('/media/fermat/HomeDisk/fermat/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLONG');
-XLAT=ncread('/media/fermat/HomeDisk/fermat/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLAT');
-% Datos metar.
+% Jhon 
+XLONG = ncread('/media/fermat/DD_JOE/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLONG');
+XLAT  = ncread('/media/fermat/DD_JOE/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLAT');
+%
+%Datos metar.
 mydir='/media/fermat/HomeDisk/fermat/FAC/repositorio_WRFDA_FAC/WRFDA_FAC_EAFIT/Metar/datos';
 cd(mydir)
+% date for the simulation
+year        = 2020;
+start_month = 8;
+end_month   = 8;
+start_day   = 18;
+end_day     = 21;
+start_hour  = 00;
+end_hour    = 00;
+format_time ='yyyy-MM-dd HH:mm:ss';
+t1 = datetime(year,start_month,start_day,start_hour,0,0,'Format',format_time); 
+t2 = datetime(year,end_month,end_day,start_hour,0,0,'Format',format_time);
+date_hour = t1:hours(1):t2; date_hour=date_hour'; 
 
+%d = yyyymmddhhss(date_hour);
 %Creación de la matriz del cubo para T y para P
 
 Metar_cube_T=nan(531,660,41,73);%Temperature Metar Hipercube  Domain 2,dim_d02: 531,660,levels=41;time=73;
@@ -37,8 +51,17 @@ datos={'datos_valledupar.csv','datos_cali.csv','datos_SANTA_MARTA.csv','datos_ri
 nombres_ciudades={'Valledupar','Cali','Santa Marta','Riohacha','Monteria','Medellin','Cartagena','Bogotá','Barrancabermeja'...
     'Barranquilla'};
 
-for i=13:20
-ind=1;
+%%%% 5-01-2021
+num_city=length(datos);
+for i=1:num_city 
+T=readtable(datos{i});
+[num_data,num_var]=size(T);
+
+
+end
+
+for i=13:20 % datos dentro del archivo a leer
+ind=1; % archivo ciudad, indice en lati longi
  
 % Valledupar Dom_2    10.46314, -73.25322      
 % Cali Dom_2	3.42158, -76.5205
@@ -57,13 +80,15 @@ ind=1;
 % nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.041,XLONG(:,1)<longi(ind)+0.041 ));
 % ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.041,XLAT(1,:)<lati(ind)+0.041 ));      
 %     end
-%
+% ubica latitud y longitud en los WRFout
 nx(ind,1)=find(and(XLONG(:,1)>longi(ind)-0.014,XLONG(:,1)<longi(ind)+0.014 ));
 ny(ind,1)=find(and(XLAT(1,:)>lati(ind)-0.014,XLAT(1,:)<lati(ind)+0.014 ));
 %
-T=readtable(datos{ind});
-size(T)
 %
-Metar_cube_T(nx(ind,1),ny(ind,1),1,1)=T.T(i-12);
+T=readtable(datos{ind});
+[num_data,num_var]=size(T);
+%
+Metar_cube_T(nx(ind,1),ny(ind,1),1,i)=T.T(i-12);
+
 Metar_cube_P(nx(ind,1),ny(ind,1),1,1)=T.P(i-12);
 end
