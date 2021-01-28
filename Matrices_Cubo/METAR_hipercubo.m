@@ -8,20 +8,20 @@ clc;close;clear all
 %carpeta donde estan los resultados de modelo asimilado y no asimilado
 
 %Andres
-%mydir1='/disk/kalman/WRFDA_semanas/1_Septiembre/Asimilando'; % Ubicacion de los archivos 
-%cd(mydir1)
-%XLONG=ncread('20200901-00asimilando_d2.nc','XLONG'); %Andres
-%XLAT=ncread('20200901-00asimilando_d2.nc','XLAT');% Andres
+mydir1='/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Metar/datos'; % Ubicacion de los archivos 
+cd(mydir1)
+XLONG=ncread('20200901-00asimilando_d2.nc','XLONG'); %Andres
+XLAT=ncread('20200901-00asimilando_d2.nc','XLAT');% Andres
 
 %path de los productos del codigo que decodifica el Metar
 %mydir='/home/kalman/Andres/FAC_REPO/WRFDA_FAC_EAFIT/Metar/datos';
 %cd(mydir)
 
 % Jhon
-XLONG=ncread('/media/fermat/HomeDisk/fermat/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLONG');
-XLAT=ncread('/media/fermat/HomeDisk/fermat/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLAT');
-% Datos metar.
-mydir='/media/fermat/HomeDisk/fermat/FAC/repositorio_WRFDA_FAC/WRFDA_FAC_EAFIT/Metar/datos';
+%XLONG=ncread('/media/fermat/HomeDisk/fermat/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLONG');
+%XLAT=ncread('/media/fermat/HomeDisk/fermat/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLAT');
+% Datos metar fermat
+%mydir='/media/fermat/HomeDisk/fermat/FAC/repositorio_WRFDA_FAC/WRFDA_FAC_EAFIT/Metar/datos';
 cd(mydir)
 
 %Creación de la matriz del cubo para T y para P
