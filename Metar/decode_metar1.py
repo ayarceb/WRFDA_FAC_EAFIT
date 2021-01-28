@@ -48,7 +48,7 @@ for j in range(0, len(a), 1):
    
 
     #os.chdir("/run/media/dirac/Datos/Reciente_Dropbox/users/arjo/lotos-euros/Repositorio_Personal_Slopez/Personal/Metar/Segunda_Fecha/datos")
-    os.chdir("/media/fermat/HomeDisk/fermat/FAC/repositorio_WRFDA_FAC/WRFDA_FAC_EAFIT/Metar/datos_test")
+    os.chdir("/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Metar/datos_test")
     information.to_csv(a[j], index = True)
 
 
