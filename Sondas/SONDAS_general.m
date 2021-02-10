@@ -14,7 +14,6 @@ load Ernesto_cortizos_18_agosto.mat
 variable={'DRCT','DWPT','HGHT','MIXR','PRES','RELH','SKNT','TEMP','THTA','THTE','THTV'};
 
 
-
 name={'Wind Direction','Dewpoint Temperature','Geopotential Height','Mixing Ratio','Atmospheric Pressure ',...
     'Relative Humidity','Wind Speed','Temperature','Potential Temperature','Equivalent Potential Temperature','Virtual Potential Temperature'};
 

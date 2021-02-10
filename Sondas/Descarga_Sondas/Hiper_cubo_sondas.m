@@ -1,22 +1,30 @@
 % this code generates the hipercube for august and september window time
 % for the experiment between FAC and EAFIT
-% plot sound from 4 location for the 1 september
+% plot sound from 4 locations (Curazao,Barranquilla,Palonegro,Bogotá) for the 1 september
 
 
 clc;clear all;close all
 
-
 variable={'PRES','HGHT','TEMP','DWPT','RELH','MIXR','DRCT','SKNT','THTA','THTE','THTV'};
-
 
 name={'Atmospheric Pressure ','Geopotential Height','Temperature','Dewpoint Temperature','Relative Humidity','Mixing Ratio',...
     'Wind Direction','Wind Speed','Potential Temperature','Equivalent Potential Temperature','Virtual Potential Temperature'};
 
-
 unit={'[hPa]','[meter]','[celsius]','[celsius]','[%]','[gram/kilogram]','[degrees true]','[knot]','[kelvin]','[kelvin]','[kelvin]'};
 
+%%
 
-%day August 18
+hour_simul=73;
+%Extracción de latitudes y longitudes de salidas de WRF
+XLONG = ncread('/media/fermat/DD_JOE/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLONG');
+XLAT  = ncread('/media/fermat/DD_JOE/FAC/corridas_validacion/Test_case_FAC_01_09_04_09/wrfout_d02_2020-09-04_00:00:00','XLAT');
+%
+% Cubos para los datos segun numero de celdas del dominio, numero de
+% niveles y numero de horas de simulacion.
+Sound_cube_T=nan(531,660,41,hour_simul);%sound Hipercube  Domain 2,dim_d02: 531,660,levels=41;time=73;
+
+
+%% day August 18
 mydir='/home/dirac/Dropbox/2020/WRFDA_FAC_EAFIT/Sondas/Descarga_Sondas/Agosto_2020/18_Agosto';
 cd(mydir)
 
@@ -31,9 +39,7 @@ Palonegro1=Palonegro{:,:};
 Bogota1=Bogota{:,:};
 
 
-
 % Barranquilla
-
 
 for i=1:11
 if(i~=2)
@@ -244,3 +250,4 @@ legend('September 1 12Z','September 2 12Z','September 3 12Z')
 
 
 
+    

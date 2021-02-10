@@ -1,4 +1,5 @@
-% plot sound from 4 location for the 1 september
+% plot sound from 4 location for the 1 september for compate WRF and WRFDA
+% outputs with the sounding information
 
 
 clc;clear all;close all
